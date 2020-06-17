@@ -24,7 +24,7 @@ git clone https://github.com/Madhav2106/StudentAnalysis.git
 
 ​											or
 
-![download](../Analysis/download.png)
+![download](/download.png)
 
 To run the code navigate to the project's root directory and in the command promt run the following command
 
