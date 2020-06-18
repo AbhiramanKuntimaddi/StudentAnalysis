@@ -6,8 +6,9 @@ Created on Fri Jun  5 19:20:31 2020
 @author: Madhav
 """
 
+from styleframe import StyleFrame, Styler, utils
 import pandas as pd
-import numpy as np
+
 import os
 
 def getFilename(filename):
@@ -15,17 +16,17 @@ def getFilename(filename):
     csv_filename = os.path.splitext(filename)[0]
     return csv_filename
 
-def readData(response_sheet, key_sheet):
+def readData(response_sheet_1, key_sheet_1):
     #Read responses sheet and convert it to .csv
-    response_data = pd.read_excel(response_sheet, index_col=None, dtype=str)
-    response_data.to_csv(getFilename(response_sheet)+".csv", header=True)
+    response_data_1 = pd.read_excel(response_sheet_1, index_col=None, dtype=str)
+    response_data_1.to_csv(getFilename(response_sheet_1)+".csv", header=True)
     
     #Read key sheet and convert it to .csv and drop index
-    key_data = pd.read_excel(key_sheet, index_col=None, dtype=str)
-    key_data.to_csv(getFilename(key_sheet)+".csv")
+    key_data_1 = pd.read_excel(key_sheet_1, index_col=None, dtype=str)
+    key_data_1.to_csv(getFilename(key_sheet_1)+".csv")
     
     #Returning the read data
-    return response_data,key_data
+    return response_data_1,key_data_1
 
 def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
                     single_phy_key,oorm_phy_key,para_phy_key,int_phy_key, studentName):
@@ -43,7 +44,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
                 phy_single_correct += 4
         else:
                 phy_single_correct = -1
-    print("Physics Single Result : ", phy_single_correct)
+    # print("Physics Single Result : ", phy_single_correct)
     
     
     phy_oorm_correct = 0
@@ -52,7 +53,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
             phy_oorm_correct += 4
         else : 
             phy_single_correct = -1
-    print("Physics One or More Result : ",phy_oorm_correct)
+    # print("Physics One or More Result : ",phy_oorm_correct)
     
     
     # print("_"*5+"Response"+"_"*5)
@@ -69,7 +70,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
                 phy_para_correct += 4
         else:
                  phy_para_correct -= 1
-    print("Physics Para Result : ",phy_para_correct)
+    # print("Physics Para Result : ",phy_para_correct)
     
     phy_int_correct = 0
     for i in range(len(para_phy_key)):
@@ -77,7 +78,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
                 phy_int_correct += 4
         else:
                 phy_int_correct -= 1
-    print("Physics Integer Result : ",phy_int_correct)
+    # print("Physics Integer Result : ",phy_int_correct)
     
     physics_total = phy_single_correct + phy_oorm_correct + phy_para_correct + phy_int_correct
     return physics_total
@@ -99,7 +100,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
                 math_single_correct += 4
         else:
                 math_single_correct = -1
-    print("Math Single Result : ", math_single_correct)
+    # print("Math Single Result : ", math_single_correct)
     
     
     math_oorm_correct = 0
@@ -108,7 +109,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
             math_oorm_correct += 4
         else : 
             math_single_correct = -1
-    print("Math One or More Result : ",math_oorm_correct)
+    # print("Math One or More Result : ",math_oorm_correct)
     
     
     # print("_"*5+"Response"+"_"*5)
@@ -125,7 +126,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
                 math_para_correct += 4
         else:
                  math_para_correct -= 1
-    print("Math Para Result : ",math_para_correct)
+    # print("Math Para Result : ",math_para_correct)
     
     math_int_correct = 0
     for i in range(len(para_math_key)):
@@ -152,7 +153,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
                 chem_single_correct += 4
         else:
                 chem_single_correct = -1
-    print("chem Single Result : ", chem_single_correct)
+    # print("chem Single Result : ", chem_single_correct)
     
     
     chem_oorm_correct = 0
@@ -161,7 +162,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
             chem_oorm_correct += 4
         else : 
             chem_single_correct = -1
-    print("chem One or More Result : ",chem_oorm_correct)
+    # print("chem One or More Result : ",chem_oorm_correct)
     
     
     # print("_"*5+"Response"+"_"*5)
@@ -178,7 +179,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
                 chem_para_correct += 4
         else:
                  chem_para_correct -= 1
-    print("chem Para Result : ",chem_para_correct)
+    # print("chem Para Result : ",chem_para_correct)
     
     chem_int_correct = 0
     for i in range(len(para_chem_key)):
@@ -189,7 +190,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
     chem_total = chem_single_correct + chem_oorm_correct + chem_para_correct + chem_int_correct
     return chem_total
 
-def QuestionsAnalysis(studentRowData,key_data):
+def QuestionsAnalysis(studentRowData,key_data_1):
     # print("_"*20)
     # for i in range(len(studentRowData)):
     #     print(studentRowData[i])    
@@ -201,9 +202,9 @@ def QuestionsAnalysis(studentRowData,key_data):
     single_math_resp, oorm_math_resp, para_math_resp, int_math_resp = studentRowData.iloc[32:40], studentRowData.iloc[40:45], studentRowData.iloc[45:50],studentRowData.iloc[50:60]  
     single_chem_resp, oorm_chem_resp, para_chem_resp, int_chem_resp = studentRowData.iloc[32:40], studentRowData.iloc[40:45], studentRowData.iloc[45:50],studentRowData.iloc[50:60]  
 
-    single_phy_key, oorm_phy_key, para_phy_key, int_phy_key  = key_data.iloc[0:8], key_data.iloc[8:13], key_data.iloc[13:18], key_data.iloc[18:28]
-    single_math_key, oorm_math_key, para_math_key, int_math_key  = key_data.iloc[28:36], key_data.iloc[36:41], key_data.iloc[41:46], key_data.iloc[46:56]
-    single_chem_key, oorm_chem_key, para_chem_key, int_chem_key  = key_data.iloc[56:64], key_data.iloc[64:69], key_data.iloc[69:74], key_data.iloc[74:84]
+    single_phy_key, oorm_phy_key, para_phy_key, int_phy_key  = key_data_1.iloc[0:8], key_data_1.iloc[8:13], key_data_1.iloc[13:18], key_data_1.iloc[18:28]
+    single_math_key, oorm_math_key, para_math_key, int_math_key  = key_data_1.iloc[28:36], key_data_1.iloc[36:41], key_data_1.iloc[41:46], key_data_1.iloc[46:56]
+    single_chem_key, oorm_chem_key, para_chem_key, int_chem_key  = key_data_1.iloc[56:64], key_data_1.iloc[64:69], key_data_1.iloc[69:74], key_data_1.iloc[74:84]
     
     studentName = studentRowData.iloc[2]
         
@@ -211,25 +212,25 @@ def QuestionsAnalysis(studentRowData,key_data):
     physics_total = PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
                     single_phy_key,oorm_phy_key,para_phy_key,int_phy_key
                     ,studentName)
-    print("Total chem marks scored by "+ studentName +" : ", physics_total)
-    print("_"*50)    
+    # print("Total chem marks scored by "+ studentName +" : ", physics_total)
+    # print("_"*50)    
     
     math_total = MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
                     single_math_key,oorm_math_key,para_math_key,int_math_key
                     ,studentName)
-    print("Total Math marks scored by "+ studentName +" : ", math_total)
-    print("_"*50)    
+    # print("Total Math marks scored by "+ studentName +" : ", math_total)
+    # print("_"*50)    
 
     chem_total = ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
                 single_chem_key,oorm_chem_key,para_chem_key,int_chem_key
                 ,studentName)
-    print("Total chem marks scored by "+ studentName +" : ", chem_total)
-    print("_"*50)    
+    # print("Total chem marks scored by "+ studentName +" : ", chem_total)
+    # print("_"*50)    
     
     total = physics_total+math_total+chem_total
     
-    print("Total Marks scored by "+studentName+" : ",total)
-    print("_"*50)
+    # print("Total Marks scored by "+studentName+" : ",total)
+    # print("_"*50)
     # print(oorm_correct_phy_key_list)
     # print(oorm_correct_phy_resp_list)
     
@@ -240,44 +241,70 @@ def QuestionsAnalysis(studentRowData,key_data):
     # for i in range(len(single_phy_key)):
     #     print(single_phy_key.iloc[i][1])
     
-    return None    
+    
+    return studentName, physics_total, chem_total, math_total, total 
 
 def StudentNullAnalysis(studentRowData):
     physics_slice = studentRowData.iloc[4:32]
-    print("Number of Unanswered Questions in Physics by "+studentRowData[2]+" is :", physics_slice.isna().sum())
+    unanswered_phy = physics_slice.isna().sum()
+    # print("Number of Unanswered Questions in Physics by "+studentRowData[2]+" is :", unanswered_phy)
     chemistry_slice = studentRowData.iloc[32:60]
-    print("Number of Unanswered Questions in Chemistry by "+studentRowData[2]+" is :", chemistry_slice.isna().sum())    
+    unanswered_chem = chemistry_slice.isna().sum()
+    # print("Number of Unanswered Questions in Chemistry by "+studentRowData[2]+" is :", unanswered_chem)    
     mathematics_slice = studentRowData.iloc[60:90]
-    print("Number of Unanswered Questions in Mathematics by "+studentRowData[2]+" is :", mathematics_slice.isna().sum())    
-    print("_"*50)
-    print("Total number of unanswered questions by "+ studentRowData[2]+" are ", studentRowData[4:90].isna().sum())    
-    return None
+    unanswered_math = mathematics_slice.isna().sum()
+    # print("Number of Unanswered Questions in Mathematics by "+studentRowData[2]+" is :", unanswered_math)    
+    # print("_"*50)
+    total_unanswered = studentRowData[4:90].isna().sum()
+    # print("Total number of unanswered questions by "+ studentRowData[2]+" are ", total_unanswered)    
+    return unanswered_phy, unanswered_chem, unanswered_math, total_unanswered
 
 def main():
-    response_sheet = "data/sheet_1_resp.xlsx"
-    key_sheet = "data/sheet_1_key.xlsx"
+    response_sheet_1 = "data/sheet_1_resp.xlsx"
+    key_sheet_1 = "data/sheet_1_key.xlsx"
+    
+    response_sheet_2 = "data/sheet_2_resp.xlsx"
+    key_sheet_2 = "data/sheet_2_key.xlsx"
+    
+    response_data_1, key_data_1 = readData(response_sheet_1, key_sheet_1)
     
     
-    response_data, key_data = readData(response_sheet, key_sheet)
+    response_data_1 = response_data_1.sort_values('OMR No.',ascending=False ,na_position='first')
+    response_data_1 = response_data_1.drop('Timestamp',axis=1)
     
-    
-    response_data = response_data.sort_values('OMR No.',ascending=False ,na_position='first')
-    response_data = response_data.drop('Timestamp',axis=1)
-    
-    number_colums = len(response_data)
+    number_colums = len(response_data_1)
     
     #TEST Col            
-    rowData = response_data.iloc[0]  
+    # rowData = response_data_1.iloc[0]  
        
-    QuestionsAnalysis(rowData, key_data)
-    StudentNullAnalysis(rowData)
+    # studentName, physics_total, chem_total, math_total, total = QuestionsAnalysis(rowData, key_data_1)
+    # unanswered_phy, unanswered_chem, unanswered_math, total_unanswered = StudentNullAnalysis(rowData)
     
+    result = []
+    for i in range(number_colums):
+        rowData = response_data_1.iloc[i]
+        studentName, physics_total, chem_total, math_total, total = QuestionsAnalysis(rowData, key_data_1)
+        unanswered_phy, unanswered_chem, unanswered_math, total_unanswered = StudentNullAnalysis(rowData)
+        result.append([studentName, physics_total, chem_total, math_total, total, unanswered_phy, unanswered_chem, unanswered_math, total_unanswered])    
+        resultdf = pd.DataFrame(result, columns=['Student Name', 'Physics Total', 'Chemistry Total', 'Mathematics Total', 'Total', 'Unanswered Physics', 'Unanswered Chemistry', 'Unanswered Math', 'Total Unanswered Questions'])  
+        
+    print(resultdf)
+    resultdf.to_csv(index=False) 
+    resultdf.to_excel("Result.xlsx", sheet_name='Result', engine='openpyxl', index=False)
     
-    #TODO : Append 
+    excel_writer = StyleFrame.ExcelWriter('Result.xlsx')
+    sf = StyleFrame(resultdf)
+    styler = Styler(font_size=15)
+    sf.apply_headers_style(styler,style_index_header=True)
+    sf.set_column_width('Student Name', 40)
+    sf.set_column_width(['Physics Total', 'Chemistry Total', 'Mathematics Total','Total'], 20)
+    sf.set_column_width(['Unanswered Physics','Unanswered Chemistry', 'Unanswered Math' ,'Total Unanswered Questions'], 25)
+    sf.to_excel(excel_writer=excel_writer)
+    excel_writer.save()
     
     # for i in range(number_colums):
-    #     rowData = response_data.iloc[i]
-    #     QuestionsAnalysis(rowData, key_data)
+    #     rowData = response_data_1.iloc[i]
+    #     QuestionsAnalysis(rowData, key_data_1)
     #     StudentNullAnalysis(rowData)
         
     
