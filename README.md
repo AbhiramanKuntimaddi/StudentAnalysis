@@ -13,7 +13,7 @@ pip -V
 Installing pandas and numpy using command prompt
 
 ```
-pip install pandas numpy
+pip install pandas styleframe
 ```
 
 Downloading or cloning the project onto the local machine using command prompt or can directly download it from Github directly
