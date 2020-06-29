@@ -18,8 +18,8 @@ def getFilename(filename):
 def readData(response_sheet, key_sheet):
     #Read responses sheet and convert it to .csv
     response_data = pd.read_excel(response_sheet, index_col=None,  dtype=str)  
-    response_data.fillna('Nan', inplace=True)
-    response_data.to_csv(getFilename(response_sheet)+".csv", header=True, mode='w',sep=',',encoding='utf-8')
+    response_data.fillna('', inplace=True)
+    response_data.to_csv(getFilename(response_sheet)+".csv", header=True)
      
     #Read key sheet and convert it to .csv and drop index
     key_data = pd.read_excel(key_sheet, index_col=None)
@@ -40,7 +40,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
             
     phy_single_correct = 0
     for i in range(len(single_phy_key)):
-        if single_phy_resp.iloc[i] == 'Nan':
+        if single_phy_resp.iloc[i] == '':
             pass
         else:
             if single_phy_resp.iloc[i] == single_phy_key.iloc[i][1]:
@@ -52,7 +52,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
     
     phy_oorm_correct = 0
     for i in range(len(oorm_phy_key_list)):
-        if oorm_phy_key_list[i] == 'Nan':
+        if oorm_phy_key_list[i] == '':
             pass
         else:
             if oorm_phy_resp_list[i] == oorm_phy_key_list[i]: 
@@ -63,7 +63,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
     
     phy_para_correct = 0
     for i in range(len(para_phy_key)):
-        if phy_para_correct.iloc[i] == 'Nan':
+        if para_phy_resp.iloc[i] == '':
             pass
         else:
             if para_phy_resp.iloc[i] == para_phy_key.iloc[i][1]:
@@ -74,7 +74,7 @@ def PhysicsAnalysis(single_phy_resp,oorm_phy_resp,para_phy_resp,int_phy_resp,
     
     phy_int_correct = 0
     for i in range(len(para_phy_key)):
-        if int_phy_resp.iloc[i] == 'Nan':
+        if int_phy_resp.iloc[i] == '':
             pass
         else:
             if int_phy_resp.iloc[i] == int_phy_key.iloc[i][1]:
@@ -99,7 +99,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
         
     math_single_correct = 0
     for i in range(len(single_math_key)):
-        if single_math_resp.iloc[i] == 'Nan':
+        if single_math_resp.iloc[i] == '':
             pass
         else:
             if single_math_resp.iloc[i] == single_math_key.iloc[i][1]:
@@ -111,7 +111,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
     
     math_oorm_correct = 0
     for i in range(len(oorm_math_key_list)):
-        if oorm_math_resp_list[i] == 'Nan':
+        if oorm_math_resp_list[i] == '':
             pass
         else:
             if oorm_math_resp_list[i] == oorm_math_key_list[i]: 
@@ -123,7 +123,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
 
     math_para_correct = 0
     for i in range(len(para_math_key)):
-        if math_para_correct.iloc[i] == 'Nan':
+        if para_math_resp.iloc[i] == '':
             pass
         else:
             if para_math_resp.iloc[i] == para_math_key.iloc[i][1]:
@@ -134,7 +134,7 @@ def MathAnalysis(single_math_resp,oorm_math_resp,para_math_resp,int_math_resp,
     
     math_int_correct = 0
     for i in range(len(para_math_key)):
-        if para_math_resp.iloc[i] == 'Nan':
+        if para_math_resp.iloc[i] == '':
             pass
         else:
             if int_math_resp.iloc[i] == int_math_key.iloc[i][1]:
@@ -157,7 +157,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
         
     chem_single_correct = 0
     for i in range(len(single_chem_key)):
-        if single_chem_resp.iloc[i] == 'Nan':
+        if single_chem_resp.iloc[i] == '':
             pass
         else:
             if single_chem_resp.iloc[i] == single_chem_key.iloc[i][1]:
@@ -169,7 +169,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
     
     chem_oorm_correct = 0
     for i in range(len(oorm_chem_key_list)):
-        if oorm_chem_resp_list[i] == 'Nan':
+        if oorm_chem_resp_list[i] == '':
             pass
         else:
             if oorm_chem_resp_list[i] == oorm_chem_key_list[i]: 
@@ -181,7 +181,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
 
     chem_para_correct = 0
     for i in range(len(para_chem_key)):
-        if para_chem_resp.iloc[i] == 'Nan':
+        if para_chem_resp.iloc[i] == '':
             pass
         else:
             if para_chem_resp.iloc[i] == para_chem_key.iloc[i][1]:
@@ -192,7 +192,7 @@ def ChemAnalysis(single_chem_resp,oorm_chem_resp,para_chem_resp,int_chem_resp,
     
     chem_int_correct = 0
     for i in range(len(para_chem_key)):
-        if int_chem_resp.iloc[i] == 'Nan':
+        if int_chem_resp.iloc[i] == '':
             pass
         else:
             if int_chem_resp.iloc[i] == int_chem_key.iloc[i][1]:
@@ -217,7 +217,7 @@ def PhysicsAnalysis_sheet2(single_phy_resp,int_phy_resp,para_phy_resp,mat_phy_re
     phy_single_correct = 0 
     
     for i in range(len(single_phy_key)):
-        if single_phy_resp.iloc[i] == 'Nan':
+        if single_phy_resp.iloc[i] == '':
             pass
         else:
             if single_phy_resp.iloc[i] == single_phy_key.iloc[i][1]:
@@ -229,7 +229,7 @@ def PhysicsAnalysis_sheet2(single_phy_resp,int_phy_resp,para_phy_resp,mat_phy_re
     phy_int_correct = 0
     
     for i in range(len(int_phy_key)):
-        if int_phy_resp.iloc[i] == 'Nan':
+        if int_phy_resp.iloc[i] == '':
             pass
         else:
             if int_phy_resp.iloc[i] == int_phy_key.iloc[i][1]:
@@ -242,7 +242,7 @@ def PhysicsAnalysis_sheet2(single_phy_resp,int_phy_resp,para_phy_resp,mat_phy_re
     phy_para_correct = 0
     
     for i in range(len(para_phy_resp)):
-        if para_phy_resp.iloc[i] == 'Nan':
+        if para_phy_resp.iloc[i] == '':
             pass
         else:
             if para_phy_resp.iloc[i] == para_phy_key.iloc[i][1]:
@@ -255,7 +255,7 @@ def PhysicsAnalysis_sheet2(single_phy_resp,int_phy_resp,para_phy_resp,mat_phy_re
     phy_mat_correct = 0
     
     for i in range(len(mat_phy_key_list)):
-        if mat_phy_resp_list[i] == 'Nan':
+        if mat_phy_resp_list[i] == '':
             pass
         else:
             if mat_phy_resp_list[i] == mat_phy_key_list[i]:
@@ -283,7 +283,7 @@ def MathAnalysis_sheet2(single_math_resp,int_math_resp,para_math_resp,mat_math_r
         
     math_single_correct = 0
     for i in range(len(single_math_key)):
-        if single_math_resp.iloc[i] == 'Nan':
+        if single_math_resp.iloc[i] == '':
             pass
         else:
             if single_math_resp.iloc[i] == single_math_key.iloc[i][1]:
@@ -295,7 +295,7 @@ def MathAnalysis_sheet2(single_math_resp,int_math_resp,para_math_resp,mat_math_r
     
     math_mat_correct = 0
     for i in range(len(mat_math_key_list)):
-        if mat_math_resp_list[i] == 'Nan':
+        if mat_math_resp_list[i] == '':
             pass
         else:
             if mat_math_resp_list[i] == mat_math_key_list[i]: 
@@ -307,7 +307,7 @@ def MathAnalysis_sheet2(single_math_resp,int_math_resp,para_math_resp,mat_math_r
 
     math_para_correct = 0
     for i in range(len(para_math_key)):
-        if para_math_resp.iloc[i] == 'Nan':
+        if para_math_resp.iloc[i] == '':
             pass
         else:
             if para_math_resp.iloc[i] == para_math_key.iloc[i][1]:
@@ -318,7 +318,7 @@ def MathAnalysis_sheet2(single_math_resp,int_math_resp,para_math_resp,mat_math_r
     
     math_int_correct = 0
     for i in range(len(int_math_key)):
-        if int_math_resp.iloc[i] == 'Nan':
+        if int_math_resp.iloc[i] == '':
             pass
         else:
             if int_math_resp.iloc[i] == int_math_key.iloc[i][1]:
@@ -340,7 +340,7 @@ def ChemAnalysis_sheet2(single_chem_resp,int_chem_resp,para_chem_resp,mat_chem_r
         
     chem_single_correct = 0
     for i in range(len(single_chem_key)):
-        if single_chem_resp.iloc[i] == 'Nan':
+        if single_chem_resp.iloc[i] == '':
             pass
         else:
             if single_chem_resp.iloc[i] == single_chem_key.iloc[i][1]:
@@ -352,7 +352,7 @@ def ChemAnalysis_sheet2(single_chem_resp,int_chem_resp,para_chem_resp,mat_chem_r
     
     chem_mat_correct = 0
     for i in range(len(mat_chem_key_list)):
-        if mat_chem_resp_list[i] == 'Nan':
+        if mat_chem_resp_list[i] == '':
             pass
         else:
             if mat_chem_resp_list[i] == mat_chem_key_list[i]: 
@@ -364,7 +364,7 @@ def ChemAnalysis_sheet2(single_chem_resp,int_chem_resp,para_chem_resp,mat_chem_r
     
     chem_para_correct = 0
     for i in range(len(para_chem_key)):
-        if para_chem_resp.iloc[i] == 'Nan':
+        if para_chem_resp.iloc[i] == '':
             pass
         else:
             if para_chem_resp.iloc[i] == para_chem_key.iloc[i][1]:
@@ -375,7 +375,7 @@ def ChemAnalysis_sheet2(single_chem_resp,int_chem_resp,para_chem_resp,mat_chem_r
     
     chem_int_correct = 0
     for i in range(len(int_chem_key)):
-        if int_chem_resp.iloc[i] == 'Nan':
+        if int_chem_resp.iloc[i] == '':
             pass
         else:
             if int_chem_resp.iloc[i] == int_chem_key.iloc[i][1]:
@@ -468,16 +468,29 @@ def QuestionsAnalysis_sheet1(studentRowData,key_data,unanswered_phy, unanswered_
 
 def StudentNullAnalysis_sheet1(studentRowData):
     physics_slice = studentRowData.iloc[4:32]
-    unanswered_phy = physics_slice.isna().sum()
+   #unanswered_phy = physics_slice.isna().sum()
+    unanswered_phy = 0
+    for i in range(len(physics_slice)):
+        if physics_slice.iloc[i] == '':
+            unanswered_phy += 1
+
     # print("Number of Unanswered Questions in Physics by "+studentRowData[2]+" is :", unanswered_phy)
     chemistry_slice = studentRowData.iloc[32:60]
-    unanswered_chem = chemistry_slice.isna().sum()
+    #unanswered_chem = chemistry_slice.isna().sum()
+    unanswered_chem = 0
+    for i in range(len(physics_slice)):
+        if physics_slice.iloc[i] == '':
+            unanswered_chem += 1
     # print("Number of Unanswered Questions in Chemistry by "+studentRowData[2]+" is :", unanswered_chem)    
     mathematics_slice = studentRowData.iloc[60:90]
-    unanswered_math = mathematics_slice.isna().sum()
+    #unanswered_math = mathematics_slice.isna().sum()
+    unanswered_math = 0
+    for i in range(len(physics_slice)):
+        if physics_slice.iloc[i] == '':
+            unanswered_math += 1
     # print("Number of Unanswered Questions in Mathematics by "+studentRowData[2]+" is :", unanswered_math)    
     # print("_"*50)
-    total_unanswered = studentRowData[4:90].isna().sum()
+    total_unanswered = unanswered_phy + unanswered_chem + unanswered_math
     # print("Total number of unanswered questions by "+ studentRowData[2]+" are ", total_unanswered)    
     return unanswered_phy, unanswered_chem, unanswered_math, total_unanswered
 
@@ -485,10 +498,28 @@ def StudentNullAnalysis_sheet2(studentRowData):
     physics_slice = studentRowData.iloc[4:29]
     chemistry_slice =  studentRowData.iloc[29:54]
     mathematics_slice = studentRowData.iloc[54:79]
-    unanswered_phy_sheet2 = physics_slice.isna().sum()
-    unanswered_chem_sheet2 = chemistry_slice.isna().sum()
-    unanswered_math_sheet2 = mathematics_slice.isna().sum()
-    total_unanswered_sheet2 = studentRowData[4:79].isna().sum()
+
+    unanswered_phy_sheet2 = 0
+    for i in range(len(physics_slice)):
+        if physics_slice.iloc[i] == '':
+            unanswered_phy_sheet2 += 1
+
+    unanswered_math_sheet2 = 0
+    for i in range(len(mathematics_slice)):
+        if mathematics_slice.iloc[i] == '':
+            unanswered_math_sheet2 += 1
+
+    unanswered_chem_sheet2 = 0
+    for i in range(len(chemistry_slice)):
+        if chemistry_slice.iloc[i] == '':
+            unanswered_chem_sheet2 += 1
+
+    #unanswered_phy_sheet2 = physics_slice.isna().sum()
+    #unanswered_chem_sheet2 = chemistry_slice.isna().sum()
+    #unanswered_math_sheet2 = mathematics_slice.isna().sum()
+    #total_unanswered_sheet2 = studentRowData[4:79].isna().sum()
+
+    total_unanswered_sheet2 = unanswered_phy_sheet2 + unanswered_math_sheet2 + unanswered_chem_sheet2
     
     return unanswered_phy_sheet2,unanswered_chem_sheet2, unanswered_math_sheet2, total_unanswered_sheet2
     
@@ -561,21 +592,21 @@ def main():
     
     excel_writer = StyleFrame.ExcelWriter('Result_sheet1.xlsx')
     sf = StyleFrame(resultdf)
-    styler = Styler(font_size=15)
+    styler = Styler(font_size=15,vertical_alignment='distributed')
     sf.apply_headers_style(styler,style_index_header=True)
     sf.set_column_width('Student Name', 40)
     sf.set_column_width(['Physics Total', 'Chemistry Total', 'Mathematics Total','Total'], 20)
-    sf.set_column_width(['Unanswered Physics','Unanswered Chemistry', 'Unanswered Math' ,'Total Unanswered Questions'], 25)
-    sf.to_excel(excel_writer=excel_writer)
+    sf.set_column_width(['Unanswered Physics','Unanswered Chemistry', 'Unanswered Math' ,'Total Unanswered Questions'], 30)
+    sf.to_excel(excel_writer=excel_writer,columns_and_rows_to_freeze='B2')
     excel_writer.save()
     
     excel_writer = StyleFrame.ExcelWriter('Result_sheet2.xlsx')
     sf = StyleFrame(resultdf_2)
-    styler = Styler(font_size=15)
+    styler = Styler(font_size=15,vertical_alignment='distributed')
     sf.apply_headers_style(styler,style_index_header=True)
     sf.set_column_width('Student Name', 40)
     sf.set_column_width(['Physics Total', 'Chemistry Total', 'Mathematics Total','Total'], 20)
-    sf.set_column_width(['Unanswered Physics','Unanswered Chemistry', 'Unanswered Math' ,'Total Unanswered Questions'], 25)
+    sf.set_column_width(['Unanswered Physics','Unanswered Chemistry', 'Unanswered Math' ,'Total Unanswered Questions'], 30)
     sf.to_excel(excel_writer=excel_writer)
     excel_writer.save()
     
